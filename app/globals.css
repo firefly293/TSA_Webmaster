@@ -1,0 +1,479 @@
+:root {
+    --brand: #3b5bb0; /*top bar*/
+    --brand-dark: #2c4785;
+    --link: #2d55a8; /*team names*/
+    --page: #f0f2f5;
+    --box: #ffffff;
+    --strip: #f7f8fa;
+    --border: #e1e4e8;
+    --line: #eceef1;
+    --input: #cfd4da;
+    --text: #1c1e21; /*main text*/
+    --soft: var(--soft);
+    --muted: #8a8d91;
+    --highlight: #fff6d1; /*paused*/
+    --highlight-edge: #ecd26a;
+    --gold: #ffd84d; /* 1st place row */
+    --gold-edge: #c9971c; /* stripe */
+    --gold-text: #7a5300; /* number */
+    --silver: #e3e7ec; /* 2nd place */
+    --silver-edge: #9aa3ad; /* stripe */
+    --silver-text: #4a525c; /* number */
+    --bronze: #f3cfa6; /* 3rd place */
+    --bronze-edge: #b06a2c; /* stripe */
+    --bronze-text: #6e3b10; /* number */
+    --up: #2e9e4a;
+    --down: #d63a3a;
+
+    /*team colors*/
+    --team-1: #2563eb;
+    --team-2: #ea580c;
+    --team-3: #16a34a;
+    --team-4: #9333ea;
+    --team-5: #db2777;
+    --team-6: #0891b2;
+    --team-7: #ca8a04;
+    --team-8: #475569;
+    --team-9: #65a30d;
+    --team-10: #92400e;
+}
+* {
+    box-sizing: border-box;
+}
+b {
+    font-weight: 600;
+}
+body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text);
+    font-family: /* default font family for whatever system loads the page TODO:choose a better font */
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+}
+h1,
+h2,
+p {
+    margin: 0;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 1px;
+}
+.topbar {
+    background: var(--brand);
+    border-bottom: 1px solid var(--brand-dark);
+    color: var(--box);
+}
+.topbar div {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0.6rem 1.25rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+}
+.topbar b {
+    font-size: 1.25rem;
+}
+.topbar span,
+.topbar a {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+.topbar a {
+    margin-left: auto;
+    color: inherit;
+}
+.board {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1.25rem 2rem;
+    display: grid;
+    gap: 0.75rem;
+}
+.panel {
+    background: var(--box);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0 0.75rem 0.75rem;
+}
+/* each box starts with a gray header strip */
+.panel > h2,
+.panel-head {
+    margin: 0 -0.75rem 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--strip);
+    border-bottom: 1px solid var(--border);
+    border-radius: 8px 8px 0 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--soft);
+}
+.empty,
+.note {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+.paused {
+    background: var(--highlight);
+    border: 1px solid var(--highlight-edge);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    font-weight: 600;
+}
+.intro {
+    padding-top: 0.75rem;
+}
+.intro h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+.summary {
+    color: var(--soft);
+}
+.summary b {
+    color: var(--text);
+}
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: start;
+}
+.column {
+    display: grid;
+    gap: 0.75rem;
+}
+.panel-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.panel-head h2 {
+    font-size: inherit;
+    margin-right: auto;
+}
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+}
+.tabs button {
+    font: inherit;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    background: none;
+    color: var(--soft);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+}
+.tabs button:hover {
+    background: var(--line);
+}
+.tabs button[aria-pressed="true"] {
+    background: var(--text);
+    color: var(--box);
+}
+.search {
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--input);
+    border-radius: 999px;
+    width: 11rem;
+}
+.team-row {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr) repeat(3, 5rem) 4rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.5rem;
+}
+.team-row.labels {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+}
+.team-row.labels span:nth-child(n + 3),
+.num {
+    text-align: right;
+}
+.team-row.labels .active {
+    color: var(--text);
+}
+.standings li {
+    border-bottom: 1px solid var(--line);
+}
+.standings li:nth-child(even) {
+    background: var(--strip);
+}
+.standings li.leader {
+    background: var(--gold);
+    box-shadow: inset 4px 0 0 var(--gold-edge);
+}
+.rank {
+    font-weight: 600;
+    color: var(--muted);
+}
+.leader .rank {
+    color: var(--gold-text);
+}
+.standings li.silver {
+    background: var(--silver);
+    box-shadow: inset 4px 0 0 var(--silver-edge);
+}
+.silver .rank {
+    color: var(--silver-text);
+}
+.standings li.bronze {
+    background: var(--bronze);
+    box-shadow: inset 4px 0 0 var(--bronze-edge);
+}
+.bronze .rank {
+    color: var(--bronze-text);
+}
+.num.active {
+    color: var(--text);
+}
+.team-name {
+    font-weight: 600;
+    color: var(--link);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.swatch {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.45rem;
+    border-radius: 1px;
+}
+.num {
+    color: var(--soft);
+}
+.num.active {
+    font-weight: 600;
+}
+.move {
+    margin-left: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.move.up {
+    color: var(--up);
+}
+.move.down,
+.score.negative {
+    color: var(--down);
+}
+.move.new {
+    color: var(--muted);
+    font-weight: normal;
+}
+.feed li {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--line);
+}
+.feed li:last-child {
+    border-bottom: 0;
+}
+.score {
+    font-weight: 600;
+    text-align: right;
+}
+.feed-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.1rem 0.4rem;
+    min-width: 0;
+    font-weight: 600;
+    color: var(--link);
+}
+.feed-name span:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.best-tag {
+    flex: none;
+    padding: 0 0.45rem;
+    background: var(--up);
+    color: var(--box);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+.feed time {
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+body:has(.projector) {
+    zoom: 1.35;
+}
+.projector .search,
+.projector .race .note {
+    display: none;
+}
+.race-chart {
+    height: 240px;
+}
+.race > h2 {
+    text-align: center;
+}
+
+/* Projector on a wide screen: fill exactly one screen, no page scroll.
+   Heights divide by the zoom because zoom also scales viewport units. */
+/* projector on a wide screen should full the whole screen without page scrolling, and heights should divide by the 35% zoom*/
+@media (min-width: 1001px) {
+    body:has(.projector) {
+        height: calc(100dvh / 1.35);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .projector {
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .projector .layout {
+        flex: 1;
+        min-height: 0;
+        align-items: stretch;
+    }
+    .projector .column {
+        min-height: 0;
+        grid-template-rows: minmax(0, 1fr);
+    }
+    .projector .column + .column {
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+    /* standings leaderboard fills the left and teams below are cut off*/
+    .projector .standings,
+    .projector .race {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .projector .standings ul {
+        min-height: 0;
+        overflow: hidden;
+    }
+    .projector .race-chart {
+        flex: 1;
+        min-height: 0;
+        height: auto;
+    }
+}
+
+@media (max-width: 1000px) {
+    .layout,
+    .column {
+        display: contents;
+    }
+    .distribution {
+        order: 1;
+    }
+}
+@media (max-width: 640px) {
+    .board {
+        padding: 0.5rem 0.5rem 1.5rem;
+    }
+    .search {
+        width: 100%;
+    }
+    .team-row {
+        grid-template-columns: 2rem minmax(0, 1fr) 4rem;
+    }
+    .team-row > .num:not(.active),
+    .labels > span:nth-child(n + 3):not(.active) {
+        display: none;
+    }
+}
+
+.admin {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 1.25rem 2rem;
+    display: grid;
+    gap: 0.75rem;
+}
+.admin h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.admin form {
+    margin: 0.4rem 0;
+}
+.admin a {
+    color: var(--link);
+    font-weight: 600;
+}
+.admin .muted {
+    color: var(--muted);
+}
+.row {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.grow {
+    flex: 1;
+}
+.admin input {
+    font: inherit;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--input);
+    border-radius: 999px;
+}
+.admin input[type="number"] {
+    width: 6rem;
+}
+.admin button {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.3rem 0.9rem;
+    border: 1px solid var(--text);
+    border-radius: 999px;
+    background: var(--text);
+    color: var(--box);
+    cursor: pointer;
+}
+.admin button.danger {
+    background: var(--strip);
+    color: var(--down);
+    border-color: var(--input);
+}
